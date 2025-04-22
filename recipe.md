@@ -46,12 +46,12 @@ gh api -X GET repos/vgrichina/REPO_NAME -q '.description,.created_at,.updated_at
 ```markdown
 # Dev Update: [Start Date] - [End Date]
 
-## [Repository Name]
+## repo-name
 - [Key update 1]
 - [Key update 2]
 - GitHub: https://github.com/vgrichina/[repository]
 
-## [Repository Name]
+## another-repo
 - [Key update 1]
 - [Key update 2]
 - GitHub: https://github.com/vgrichina/[repository]
@@ -60,13 +60,17 @@ gh api -X GET repos/vgrichina/REPO_NAME -q '.description,.created_at,.updated_at
 ### Tweet Format (`tweets/`)
 
 ```
-Enhanced Vibe Compiler with better CLI options, improved configuration system, added CI testing workflow, and created comprehensive documentation with tutorials.
+repo-name:
+• key update 1
+• key update 2
 
-Added AI Player to Vibe Pong with evaluation scripts to test different models. Refactored the project structure for better extensibility.
+another-repo:
+• key update 1
+• key update 2
 
 Links:
-https://github.com/vgrichina/vibe-compiler
-https://github.com/vgrichina/vibe-pong
+https://github.com/vgrichina/repo-name
+https://github.com/vgrichina/another-repo
 ```
 
 ### SVG Guidelines (`svg/`)
