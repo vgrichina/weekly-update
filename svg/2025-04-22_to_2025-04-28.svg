@@ -59,18 +59,16 @@
   <circle cx="300" cy="500" r="105" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" />
   <circle cx="900" cy="400" r="155" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" />
   
-  <!-- Highlight boxes for major updates -->
-  <rect x="150" y="300" width="360" height="50" rx="25" ry="25" fill="rgba(255,255,255,0.25)" />
-  <text x="330" y="335" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="white">Strawberry Computer</text>
+  <!-- Highlight box for main update -->
+  <rect x="300" y="300" width="600" height="60" rx="30" ry="30" fill="rgba(255,255,255,0.35)" />
+  <text x="600" y="340" font-family="Arial, sans-serif" font-size="30" text-anchor="middle" fill="white" font-weight="bold">🍓 Strawberry Computer 🍓</text>
   
-  <rect x="150" y="370" width="280" height="50" rx="25" ry="25" fill="rgba(255,255,255,0.25)" />
-  <text x="290" y="405" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="white">Web4 Deploy</text>
+  <!-- Secondary projects -->
+  <rect x="200" y="400" width="280" height="50" rx="25" ry="25" fill="rgba(255,255,255,0.25)" />
+  <text x="340" y="435" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="white">Vibe Compiler</text>
   
-  <rect x="770" y="300" width="280" height="50" rx="25" ry="25" fill="rgba(255,255,255,0.25)" />
-  <text x="910" y="335" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="white">Vibe Compiler</text>
-  
-  <rect x="770" y="370" width="280" height="50" rx="25" ry="25" fill="rgba(255,255,255,0.25)" />
-  <text x="910" y="405" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="white">Vibe Server</text>
+  <rect x="700" y="400" width="280" height="50" rx="25" ry="25" fill="rgba(255,255,255,0.25)" />
+  <text x="840" y="435" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="white">Vibe Server</text>
   
   <!-- Code lines decoration -->
   <g stroke="rgba(255,255,255,0.3)" stroke-width="1">
