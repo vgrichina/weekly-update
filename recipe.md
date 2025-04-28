@@ -29,14 +29,17 @@ gh api -X GET search/repositories -f q="user:vgrichina created:>YYYY-MM-DD" -q '
 # Get commit messages since a specific date
 gh api -X GET search/commits -f q="author:vgrichina committer-date:>YYYY-MM-DD" -q '.items[].commit.message'
 
-# Get commits for a specific repository
-gh api -X GET search/commits -f q="repo:vgrichina/REPO_NAME committer-date:>YYYY-MM-DD" -q '.items[].commit.message'
-
 # Get PR/Issue titles created since a specific date
 gh api -X GET search/issues -f q="author:vgrichina created:>YYYY-MM-DD" -q '.items[].title'
 
 # Get repository information
 gh api -X GET repos/vgrichina/REPO_NAME -q '.description,.created_at,.updated_at'
+
+# Find recently updated repositories (alternative approach)
+gh repo list vgrichina --json name,updatedAt --jq '.[] | select(.updatedAt >= "YYYY-MM-DD")'
+
+# Get commits with repository information (alternative approach)
+gh search commits --owner vgrichina --committer-date ">YYYY-MM-DD" --json repository,commit | jq '[.[] | {repo: .repository.name, message: .commit.message}]'
 ```
 
 ## File Formats
