@@ -23,23 +23,36 @@ When using Claude to generate an update, it should:
 Use these commands to gather information about repository activity:
 
 ```bash
-# Get repositories created in the date range
-gh api -X GET search/repositories -f q="user:vgrichina created:>YYYY-MM-DD" -q '.items[].name'
+# Get repositories created in the date range (with specific start and end dates)
+gh api -X GET search/repositories -f q="user:vgrichina created:>YYYY-MM-DD created:<YYYY-MM-DD" -q '.items[].name'
 
-# Get commit messages since a specific date
-gh api -X GET search/commits -f q="author:vgrichina committer-date:>YYYY-MM-DD" -q '.items[].commit.message'
+# Get commit messages since a specific date range
+gh api -X GET search/commits -f q="author:vgrichina committer-date:>YYYY-MM-DD committer-date:<YYYY-MM-DD" -q '.items[].commit.message'
 
-# Get PR/Issue titles created since a specific date
-gh api -X GET search/issues -f q="author:vgrichina created:>YYYY-MM-DD" -q '.items[].title'
+# Get PR/Issue titles created in a date range
+gh api -X GET search/issues -f q="author:vgrichina created:>YYYY-MM-DD created:<YYYY-MM-DD" -q '.items[].title'
 
 # Get repository information
 gh api -X GET repos/vgrichina/REPO_NAME -q '.description,.created_at,.updated_at'
 
-# Find recently updated repositories (alternative approach)
-gh repo list vgrichina --json name,updatedAt --jq '.[] | select(.updatedAt >= "YYYY-MM-DD")'
+# Find recently updated repositories
+gh repo list vgrichina --json name,updatedAt,description --jq '.[] | select(.updatedAt >= "YYYY-MM-DD" and .updatedAt <= "YYYY-MM-DD")'
 
-# Get commits with repository information (alternative approach)
-gh search commits --owner vgrichina --committer-date ">YYYY-MM-DD" --json repository,commit | jq '[.[] | {repo: .repository.name, message: .commit.message}]'
+# Get commits with repository information
+gh search commits --owner vgrichina --committer-date ">YYYY-MM-DD" --committer-date "<YYYY-MM-DD" --json repository,commit | jq 'group_by(.repository.name) | map({repo: .[0].repository.name, count: length})'
+
+# Get detailed commit history for a specific repository in date range
+gh api -X GET repos/vgrichina/REPO_NAME/commits -q '[.[] | select(.commit.committer.date >= "YYYY-MM-DDT00:00:00Z" and .commit.committer.date <= "YYYY-MM-DDT23:59:59Z") | {message: .commit.message, date: .commit.committer.date}]'
+
+# For Strawberry-Computer organization repositories:
+# List recently updated repositories
+gh repo list Strawberry-Computer --json name,updatedAt,description --jq '.[] | select(.updatedAt >= "YYYY-MM-DD" and .updatedAt <= "YYYY-MM-DD")'
+
+# Get commits with repository information from organization
+gh search commits --owner Strawberry-Computer --committer-date ">YYYY-MM-DD" --committer-date "<YYYY-MM-DD" --json repository,commit | jq 'group_by(.repository.name) | map({repo: .[0].repository.name, count: length})'
+
+# Get detailed commit history for a specific organization repository
+gh api -X GET repos/Strawberry-Computer/REPO_NAME/commits -q '[.[] | select(.commit.committer.date >= "YYYY-MM-DDT00:00:00Z" and .commit.committer.date <= "YYYY-MM-DDT23:59:59Z") | {message: .commit.message, date: .commit.committer.date}]'
 ```
 
 ## File Formats
